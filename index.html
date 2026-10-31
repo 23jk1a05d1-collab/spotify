@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spotify - Telugu Songs</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* TOP NAVIGATION */
+
+.navbar {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    gap: 20px;
+    background: #000;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+.home {
+    background: #242424;
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 22px;
+}
+
+.search {
+    background: #242424;
+    border-radius: 30px;
+    padding: 15px 20px;
+    width: 40%;
+}
+
+.search input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 16px;
+    width: 90%;
+}
+
+.nav-links {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login {
+    background: white;
+    color: black;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* MAIN LAYOUT */
+
+.container {
+    display: flex;
+    gap: 10px;
+    height: calc(100vh - 155px);
+    padding-right: 10px;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    background: #121212;
+    width: 22%;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.sidebar h3 {
+    margin-bottom: 25px;
+}
+
+.side-box {
+    background: #242424;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.side-box p {
+    margin: 15px 0;
+    color: #ddd;
+}
+
+.side-box button {
+    background: white;
+    color: black;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* MAIN CONTENT */
+
+.main {
+    background: #121212;
+    flex: 1;
+    padding: 25px;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+}
+
+.filters button {
+    background: #292929;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.filters button.active {
+    background: white;
+    color: black;
+}
+
+h2 {
+    margin-bottom: 25px;
+}
+
+/* ALBUMS */
+
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+}
+
+.album {
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.album:hover {
+    background: #242424;
+}
+
+.album img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.album h3 {
+    font-size: 15px;
+    margin-top: 12px;
+    line-height: 1.4;
+}
+
+.album p {
+    color: #b3b3b3;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.play {
+    background: #1ed760;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* PLAYLISTS */
+
+.playlist-section {
+    margin-top: 55px;
+}
+
+.playlist-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+}
+
+.playlist {
+    background: #181818;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.playlist:hover {
+    background: #282828;
+}
+
+.playlist img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.playlist h3 {
+    font-size: 15px;
+    margin-top: 12px;
+}
+
+.playlist p {
+    color: #b3b3b3;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+/* BOTTOM BANNER */
+
+.banner {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(90deg, #a52ba4, #568cf0);
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.banner p {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.banner button {
+    background: white;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media(max-width: 1000px) {
+    .album-grid, .playlist-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .sidebar {
+        width: 28%;
+    }
+
+    .nav-links a {
+        display: none;
+    }
+}
+
+@media(max-width: 650px) {
+    .sidebar {
+        display: none;
+    }
+
+    .container {
+        height: auto;
+    }
+
+    .main {
+        padding: 15px;
+    }
+
+    .album-grid, .playlist-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .search {
+        width: 65%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .banner p {
+        font-size: 11px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+    <div class="logo">◉</div>
+
+    <div class="home">⌂</div>
+
+    <div class="search">
+        🔍
+        <input type="text" id="search"
+        placeholder="Telugu songs">
+    </div>
+
+    <div class="nav-links">
+        <a href="#">Premium</a>
+        <a href="#">Support</a>
+        <a href="#">Download</a>
+        <a href="#">Sign up</a>
+        <button class="login" onclick="alert('Login demo')">
+            Log in
+        </button>
+    </div>
+
+</header>
+
+<!-- SIDEBAR AND MAIN -->
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <h3>☷ Your Library</h3>
+
+        <div class="side-box">
+            <h4>Create your first playlist</h4>
+            <p>It's easy, we'll help you</p>
+            <button onclick="alert('Playlist created!')">
+                Create playlist
+            </button>
+        </div>
+
+        <div class="side-box">
+            <h4>Let's find some podcasts to follow</h4>
+            <p>We'll keep you updated on new episodes</p>
+            <button onclick="alert('Browse podcasts')">
+                Browse podcasts
+            </button>
+        </div>
+
+    </aside>
+
+    <main class="main">
+
+        <!-- FILTERS -->
+
+        <div class="filters">
+
+            <button class="active" onclick="showAll(this)">All</button>
+
+            <button onclick="showAlbums(this)">Albums</button>
+
+            <button onclick="showPlaylists(this)">Playlists</button>
+
+            <button onclick="showAll(this)">Songs</button>
+
+        </div>
+
+        <!-- ALBUM SECTION -->
+
+        <section id="albums">
+
+            <h2>Albums</h2>
+
+            <div class="album-grid" id="albumGrid">
+
+                <div class="album">
+                    <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=400" alt="Telugu album">
+                    <h3>Neno Butterfly</h3>
+                    <p>2026 • G. V. Prakash</p>
+                    <button class="play" onclick="playSong(this)">▶</button>
+                </div>
+
+                <div class="album">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400" alt="Music album">
+                    <h3>Arabic Kuthu</h3>
+                    <p>2022 • Anirudh Ravichander</p>
+                    <button class="play" onclick="playSong(this)">▶</button>
+                </div>
+
+                <div class="album">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400" alt="Music album">
+                    <h3>Chinni Gundelo</h3>
+                    <p>2025 • Vivek Mervin</p>
+                    <button class="play" onclick="playSong(this)">▶</button>
+                </div>
+
+                <div class="album">
+                    <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=400" alt="Music album">
+                    <h3>Basinga Balaalu</h3>
+                    <p>2026 • Swamy Naresh</p>
+                    <button class="play" onclick="playSong(this)">▶</button>
+                </div>
+
+                <div class="album">
+                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400" alt="Music album">
+                    <h3>Rambai Neemeeda</h3>
+                    <p>2025 • Suresh Bobbili</p>
+                    <button class="play" onclick="playSong(this)">▶</button>
+                </div>
+
+                <div class="album">
+                    <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400" alt="Music album">
+                    <h3>Remo Telugu</h3>
+                    <p>2016 • Anirudh</p>
+                    <button class="play" onclick="playSong(this)">▶</button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- PLAYLIST SECTION -->
+
+        <section class="playlist-section" id="playlists">
+
+            <h2>Playlists</h2>
+
+            <div class="playlist-grid">
+
+                <div class="playlist">
+                    <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=400" alt="Playlist">
+                    <h3>Telugu Hits 2026</h3>
+                    <p>Latest Telugu Songs</p>
+                </div>
+
+                <div class="playlist">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400" alt="Playlist">
+                    <h3>Love Telugu Songs</h3>
+                    <p>Romantic Hits</p>
+                </div>
+
+                <div class="playlist">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400" alt="Playlist">
+                    <h3>Mass Telugu Songs</h3>
+                    <p>Best Mass Hits</p>
+                </div>
+
+                <div class="playlist">
+                    <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=400" alt="Playlist">
+                    <h3>Melody Songs</h3>
+                    <p>Evergreen Melodies</p>
+                </div>
+
+                <div class="playlist">
+                    <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400" alt="Playlist">
+                    <h3>Best of Telugu</h3>
+                    <p>2000–2015 Hits</p>
+                </div>
+
+                <div class="playlist">
+                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400" alt="Playlist">
+                    <h3>Trending Songs</h3>
+                    <p>Popular Telugu Music</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- BOTTOM BANNER -->
+
+<footer class="banner">
+
+    <div>
+        <strong>Preview of Spotify</strong>
+        <p>Sign up to get unlimited songs and podcasts with occasional ads.</p>
+    </div>
+
+    <button onclick="alert('Thank you!')">
+        Sign up for free
+    </button>
+
+</footer>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+// PLAY BUTTON
+
+function playSong(button) {
+
+    let allButtons = document.querySelectorAll(".play");
+
+    allButtons.forEach(btn => {
+        btn.innerHTML = "▶";
+    });
+
+    if (button.innerHTML === "▶") {
+        button.innerHTML = "Ⅱ";
+    } else {
+        button.innerHTML = "▶";
+    }
+
+}
+
+// SEARCH FUNCTION
+
+document.getElementById("search").addEventListener("input", function() {
+
+    let searchValue = this.value.toLowerCase();
+
+    let albums = document.querySelectorAll(".album");
+
+    albums.forEach(album => {
+
+        let songName = album.innerText.toLowerCase();
+
+        if (songName.includes(searchValue)) {
+            album.style.display = "block";
+        } else {
+            album.style.display = "none";
+        }
+
+    });
+
+});
+
+// FILTER BUTTONS
+
+function showAll(button) {
+    setActive(button);
+    document.getElementById("albums").style.display = "block";
+    document.getElementById("playlists").style.display = "block";
+}
+
+function showAlbums(button) {
+    setActive(button);
+    document.getElementById("albums").style.display = "block";
+    document.getElementById("playlists").style.display = "none";
+}
+
+function showPlaylists(button) {
+    setActive(button);
+    document.getElementById("albums").style.display = "none";
+    document.getElementById("playlists").style.display = "block";
+}
+
+function setActive(button) {
+    document.querySelectorAll(".filters button").forEach(btn => {
+        btn.classList.remove("active");
+    });
+    button.classList.add("active");
+}
+
+</script>
+
+</body>
+</html>
